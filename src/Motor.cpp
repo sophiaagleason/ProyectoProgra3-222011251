@@ -8,11 +8,15 @@
 Motor::Motor() {}
 Motor::~Motor() {}
 
-bool Motor::insertar(const Registro& r) { (void)r; return false; }
+bool Motor::insertar(const Registro& r) {
+    return tablaPrincipal.insertar(r);
+}
+
+bool Motor::obtener(int id, Registro& salida) {
+    return tablaPrincipal.obtener(id, salida);
+}
 bool Motor::eliminar(int id) { (void)id; return false; }
 bool Motor::actualizar(int id, int nuevoValor) { (void)id; (void)nuevoValor; return false; }
-
-bool Motor::obtener(int id, Registro& salida) { (void)id; (void)salida; return false; }
 
 void Motor::rango(int a, int b, int limite, ResultadoRango& salida) {
     (void)a; (void)b; (void)limite;
