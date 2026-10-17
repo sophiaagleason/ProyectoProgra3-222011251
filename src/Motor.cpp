@@ -5,8 +5,10 @@
 
 #include <cstring>
 
-Motor::Motor() {}
-Motor::~Motor() {}
+Motor::Motor() {} // llamamos el constructor
+Motor::~Motor() {} // llamamos el destructor
+
+// Donde mandamos a llamar a todas las funciones
 
 bool Motor::insertar(const Registro& r) {
     return tablaPrincipal.insertar(r);
@@ -15,7 +17,11 @@ bool Motor::insertar(const Registro& r) {
 bool Motor::obtener(int id, Registro& salida) {
     return tablaPrincipal.obtener(id, salida);
 }
-bool Motor::eliminar(int id) { (void)id; return false; }
+
+bool Motor::eliminar(int id) {
+    return tablaPrincipal.eliminar(id);
+}
+
 bool Motor::actualizar(int id, int nuevoValor) { (void)id; (void)nuevoValor; return false; }
 
 void Motor::rango(int a, int b, int limite, ResultadoRango& salida) {
