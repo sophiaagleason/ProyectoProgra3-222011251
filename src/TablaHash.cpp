@@ -82,3 +82,16 @@ bool TablaHash::eliminar(int id) { // funcion encargada de eliminar elementos
 
     return false;
 }
+
+Registro* TablaHash::buscar(int id) const {
+    int idx = funcionHash(id);
+    NodoHash* actual = cubetas[idx];
+
+    while (actual != nullptr) {
+        if (actual->id == id) {
+            return &(actual->reg);
+        }
+        actual = actual->siguiente;
+    }
+    return nullptr;
+}

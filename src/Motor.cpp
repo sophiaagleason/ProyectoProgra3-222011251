@@ -22,7 +22,14 @@ bool Motor::eliminar(int id) {
     return tablaPrincipal.eliminar(id);
 }
 
-bool Motor::actualizar(int id, int nuevoValor) { (void)id; (void)nuevoValor; return false; }
+bool Motor::actualizar(int id, int nuevoValor) {
+    Registro* reg = tablaPrincipal.buscar(id);
+    if (reg == nullptr) {
+        return false;
+    }
+    reg->valor = nuevoValor;
+    return true;
+}
 
 void Motor::rango(int a, int b, int limite, ResultadoRango& salida) {
     (void)a; (void)b; (void)limite;

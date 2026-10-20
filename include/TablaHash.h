@@ -30,6 +30,7 @@ public:
     bool insertar(const Registro& r); // llamamos nuestras funciones
     bool obtener(int id, Registro& salida) const;
     bool eliminar(int id);
+    Registro* buscar(int id) const;
 };
 
 #endif
