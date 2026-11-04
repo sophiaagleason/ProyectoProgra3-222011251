@@ -42,18 +42,16 @@ bool Motor::actualizar(int id, int nuevoValor) {
     if (viejoValor == nuevoValor) {
         return true;
 
-    indiceOrdenado.eliminar(viejoValor, id);
-    reg->valor = nuevoValor;
-    indiceOrdenado.insertar(nuevoValor, id, *reg);
+        indiceOrdenado.eliminar(viejoValor, id);
+        reg->valor = nuevoValor;
+        indiceOrdenado.insertar(nuevoValor, id, *reg);
 
-    return true; // OK
+        return true; // OK
+    }
 }
 
 void Motor::rango(int a, int b, int limite, ResultadoRango& salida) {
-    (void)a; (void)b; (void)limite;
-    salida.n = 0;
-    salida.firma = 0;
-    salida.nFilas = 0;
+    indiceOrdenado.rango(a, b, limite, salida);
 }
 
 int  Motor::contar(int a, int b) { (void)a; (void)b; return 0; }
