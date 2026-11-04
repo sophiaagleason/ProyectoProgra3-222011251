@@ -11,7 +11,11 @@ Motor::~Motor() {} // llamamos el destructor
 // Donde mandamos a llamar a todas las funciones
 
 bool Motor::insertar(const Registro& r) {
-    return tablaPrincipal.insertar(r);
+    if (!tablaPrincipal.insertar(r)) {
+        return false;
+    }
+    indiceOrdenado.insertar(r.valor, r.id, r);
+    return true; // OK
 }
 
 bool Motor::obtener(int id, Registro& salida) {
@@ -19,16 +23,30 @@ bool Motor::obtener(int id, Registro& salida) {
 }
 
 bool Motor::eliminar(int id) {
-    return tablaPrincipal.eliminar(id);
+    Registro r;
+    if (!tablaPrincipal.obtener(id, r)) {
+        return false;
+    }
+    tablaPrincipal.eliminar(id);
+    indiceOrdenado.eliminar(r.valor, id);
+    return true;
 }
 
 bool Motor::actualizar(int id, int nuevoValor) {
     Registro* reg = tablaPrincipal.buscar(id);
-    if (reg == nullptr) {
+    if (!reg) {
         return false;
     }
+
+    int viejoValor = reg->valor;
+    if (viejoValor == nuevoValor) {
+        return true;
+
+    indiceOrdenado.eliminar(viejoValor, id);
     reg->valor = nuevoValor;
-    return true;
+    indiceOrdenado.insertar(nuevoValor, id, *reg);
+
+    return true; // OK
 }
 
 void Motor::rango(int a, int b, int limite, ResultadoRango& salida) {
