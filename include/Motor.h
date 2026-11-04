@@ -17,6 +17,8 @@
 #include <iostream>
 #include "Registro.h"
 #include "TablaHash.h"
+#include "AVL.h"
+
 class Motor {
 public:
     Motor();
@@ -58,6 +60,7 @@ public:
 private:
     // TODO: tus estructuras
     TablaHash tablaPrincipal;
+    AVL indiceOrdenado;
 };
 
 #endif
