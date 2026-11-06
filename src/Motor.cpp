@@ -58,14 +58,16 @@ int Motor::contar(int a, int b) {
     return indiceOrdenado.contar(a, b);
 }
 
-bool Motor::kesimo(int k, Registro& salida) { (void)k; (void)salida; return false; }
+bool Motor::kesimo(int k, Registro& salida) {}
 int  Motor::top(int k, int categoria, Registro* salida) { (void)k; (void)categoria; (void)salida; return 0; }
 
 void Motor::iniciarTransaccion() {}
 bool Motor::confirmar() { return false; }
 bool Motor::revertir() { return false; }
 
-int  Motor::altura() const { return -1; }
+int Motor::altura() const{
+    return indiceOrdenado.altura();
+}
 void Motor::configurarCache(int capacidad) { (void)capacidad; }
 
 EstadisticasCache Motor::estadisticasCache() const {

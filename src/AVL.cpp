@@ -150,3 +150,4 @@ int AVL::contar(int a, int b) const {
     if (a > b) return 0;
     return contarRec(raiz, a, b);
 }
+

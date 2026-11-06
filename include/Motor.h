@@ -41,10 +41,10 @@ public:
     // --- Transacciones anidadas --------------------------------------------
     void iniciarTransaccion();
     bool confirmar();                           // false si no hay transacción abierta
-    bool revertir();                            // false si no hay transacción abierta
+    bool revertir();                           // false si no hay transacción abierta
 
     // --- Diagnóstico ---------------------------------------------------------
-    int  altura() const;                        // altura del índice ordenado (vacío = -1)
+    int altura() const;                        // altura del índice ordenado (vacío = -1)
     void configurarCache(int capacidad);
     EstadisticasCache estadisticasCache() const;
 
