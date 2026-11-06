@@ -40,15 +40,12 @@ NodoAVL* AVL::rotacionIzquierda(NodoAVL* x) {
 NodoAVL* AVL::rebalancear(NodoAVL* n) {
     actualizarAltura(n);
     int bf = factorBalance(n); // izq - der
-
-    // Caso Izquierda-Izquierda o Izquierda-Derecha
     if (bf == 2) {
         if (factorBalance(n->izq) < 0) {
             n->izq = rotacionIzquierda(n->izq);
         }
         return rotacionDerecha(n);
     }
-    // Caso Derecha-Derecha o Derecha-Izquierda
     if (bf == -2) {
         if (factorBalance(n->der) > 0) {
             n->der = rotacionDerecha(n->der);
@@ -112,7 +109,6 @@ void AVL::rangoRec(NodoAVL* n, int a, int b, int limite, ResultadoRango& salida,
     if (n->clave.valor >= a) {
         rangoRec(n->izq, a, b, limite, salida, contador);
     }
-
     if (n->clave.valor >= a && n->clave.valor <= b) {
         salida.n++;
         long long mult = (long long)(contador + 1) * n->clave.id;
@@ -136,4 +132,21 @@ void AVL::rango(int a, int b, int limite, ResultadoRango& salida) const {
     if (a > b) return;
     int contador = 0;
     rangoRec(raiz, a, b, limite, salida, contador);
+}
+
+int AVL::contarRec(NodoAVL* n, int a, int b) const {
+    if (!n) return 0;
+    if (n->clave.valor < a) {
+        return contarRec(n->der, a, b);
+    }
+    if (n->clave.valor > b) {
+        return contarRec(n->izq, a, b);
+    }
+    int cuentaActual = (n->clave.valor >= a && n->clave.valor <= b) ? 1 : 0;
+    return cuentaActual + contarRec(n->izq, a, b) + contarRec(n->der, a, b);
+}
+
+int AVL::contar(int a, int b) const {
+    if (a > b) return 0;
+    return contarRec(raiz, a, b);
 }

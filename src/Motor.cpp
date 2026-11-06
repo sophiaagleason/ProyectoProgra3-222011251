@@ -54,7 +54,10 @@ void Motor::rango(int a, int b, int limite, ResultadoRango& salida) {
     indiceOrdenado.rango(a, b, limite, salida);
 }
 
-int  Motor::contar(int a, int b) { (void)a; (void)b; return 0; }
+int Motor::contar(int a, int b) {
+    return indiceOrdenado.contar(a, b);
+}
+
 bool Motor::kesimo(int k, Registro& salida) { (void)k; (void)salida; return false; }
 int  Motor::top(int k, int categoria, Registro* salida) { (void)k; (void)categoria; (void)salida; return 0; }
 

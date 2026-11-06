@@ -34,11 +34,10 @@ struct NodoAVL {
 class AVL {
 private:
     NodoAVL* raiz;
-
     int alt(NodoAVL* n) const { return n ? n->altura : -1; }
     int maximo(int a, int b) const { return (a > b) ? a : b; }
     int factorBalance(NodoAVL* n) const { return n ? alt(n->izq) - alt(n->der) : 0; }
-
+    int contarRec(NodoAVL* n, int a, int b) const;
     void actualizarAltura(NodoAVL* n) {
         if (n) n->altura = 1 + maximo(alt(n->izq), alt(n->der));
     }
@@ -64,6 +63,7 @@ public:
     void eliminar(int valor, int id);
     void rango(int a, int b, int limite, ResultadoRango& salida) const;
     int altura() const { return alt(raiz); }
+    int contar(int a, int b) const;
 };
 
 #endif //MINIDB_AVL_H
